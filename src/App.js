@@ -4,22 +4,13 @@ import './App.css';
 import FirstComponent from './firstComponent';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     isClicked: false
-  //   }
-  // }
-
-  // toggle = () => {
-  //   this.setState({isClicked: !this.state.isClicked})
-  // }
 
   constructor(props) {
     super(props)
     this.state = {
       input: '',
-      items: []
+      items: [],
+      isClicked: false
     }
   }
 
@@ -36,17 +27,20 @@ class App extends Component {
     })
   }
 
+  toggle = () => {
+    this.setState({isClicked: !this.state.isClicked})
+  }
+
   render() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        
         <form onSubmit={this.formSubmit}>
           <input value={this.state.input} onChange={this.inputUpdate}></input>
           <button>Submit</button>
         </form>
-        {/* {<button onClick={this.toggle}>{this.state.isClicked ? 'On' : 'Off'}</button>} */}
+        <button onClick={this.toggle}>{this.state.isClicked ? 'On' : 'Off'}</button>
       <FirstComponent items={this.state.items}></FirstComponent>
       </header>
     </div>
