@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TodoCard from './TodoCard';
 import logo from './logo.svg';
 import './App.css';
-import FirstComponent from './firstComponent';
 
 class App extends Component {
 
@@ -32,17 +31,27 @@ class App extends Component {
     this.setState({isClicked: !this.state.isClicked})
   }
 
+  deleteItem = (index) => {
+    console.log('was clicked', index)
+    let copyOfList = this.state.items
+    copyOfList.splice(index, 1)
+    this.setState({listOfTodos: [...copyOfList]})
+  }
+
   render() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <button onClick={this.toggle}>{this.state.isClicked ? 'On' : 'Off'}</button>
         <form onSubmit={this.formSubmit}>
           <input value={this.state.input} onChange={this.inputUpdate}></input>
           <button>Submit</button>
         </form>
-        <button onClick={this.toggle}>{this.state.isClicked ? 'On' : 'Off'}</button>
-      <FirstComponent items={this.state.items}></FirstComponent>
+        <ul>{this.state.items.map((todo, index)=>{
+            return <TodoCard key={index} index={index} title={todo} clickToRemove={this.deleteItem}></TodoCard>
+            })}
+        </ul>
       </header>
     </div>
   );
