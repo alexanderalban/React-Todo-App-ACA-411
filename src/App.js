@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       input: '',
       items: [],
-      isClicked: false
+      isClicked: false,
     }
   }
 
@@ -29,6 +29,7 @@ class App extends Component {
 
   toggle = () => {
     this.setState({isClicked: !this.state.isClicked})
+    console.log(this.state.isClicked)
   }
 
   deleteItem = (index) => {
@@ -49,7 +50,9 @@ class App extends Component {
           <button>Submit</button>
         </form>
         <ul>{this.state.items.map((todo, index)=>{
-            return <TodoCard key={index} index={index} title={todo} clickToRemove={this.deleteItem}></TodoCard>
+            return <TodoCard key={index} index={index} title={todo} 
+            clickToRemove={this.deleteItem}>
+            </TodoCard>
             })}
         </ul>
       </header>

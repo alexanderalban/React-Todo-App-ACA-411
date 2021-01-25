@@ -1,0 +1,1 @@
+<TodoStatus key={index} index={index} title={todo} statusChange={this.itemStatus}></TodoStatus>
